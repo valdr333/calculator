@@ -1,0 +1,17 @@
+.calculator {
+    display: flex;
+    flex-direction: column;
+}
+
+.display {
+    border: 2px solid red;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.allRow {
+    display: flex;
+}
