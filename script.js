@@ -29,37 +29,40 @@ for (let i = 1; i < 6; i++) {
 
 for (let i = 0; i < 5; i++) {
     if (i == 0) {
-        const ac = document.createElement("p");
+        const ac = document.createElement("button");
         ac.textContent = "AC";
-        const division = document.createElement("p");
+        const division = document.createElement("button");
         division.textContent = "÷";
         rows[i].appendChild(ac);
         rows[i].appendChild(division);
     } else if (i == 4) {
-        const nula = document.createElement("p");
+        const nula = document.createElement("button");
         nula.textContent = 0;
-        const equal = document.createElement("p");
+        const equal = document.createElement("button");
         equal.textContent = "=";
         rows[i].appendChild(nula);
         rows[i].appendChild(equal);
     } else {
         let k = 3 * i
         for (let j = 0; j < 3; j++) {
-            const p = document.createElement("p");
-            p.textContent = 10-k;
-            rows[i].appendChild(p);
+            const button = document.createElement("button");
+            button.textContent = 10-k;
+            rows[i].appendChild(button);
             k--;
         }
+        
         if (i == 1) {
-            const operation = document.createElement("p");
-            operation.textContent = "x";
+            const multiplication = document.createElement("button");
+            multiplication.textContent = "x";
+            rows[i].appendChild(multiplication);
         } else if (i == 2) {
-            const operation = document.createElement("p");
-            operation.textContent = "-";
+            const subtraction = document.createElement("button");
+            subtraction.textContent = "-";
+            rows[i].appendChild(subtraction);
         } else if (i == 3) {
-            const operation = document.createElement("p");
-            operation.textContent = "+";
+            const addition = document.createElement("button");
+            addition.textContent = "+";
+            rows[i].appendChild(addition);
         }
-        rows[i].appendChild(operation);
     }
 }
