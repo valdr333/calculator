@@ -37,7 +37,7 @@ body {
     
     /*border: 2px solid red;*/
 }
-/* IN ROWS I CAN TRY TO MAKE IT BETTER WITH flex PROPERTY LIKE I DID WITH CHATGPT IN CALCULATOR WITH .display AND .buttons */
+
 .allRows {
     display: flex;
     justify-content: space-between;
@@ -52,16 +52,15 @@ body {
 }
 
 .buttonOperator {
-    width: 25%;
-    min-width: 25%;
     background-color: rgb(241, 154, 55);
+    flex: 0 0 25%;
 }
 
-.buttonNumber, .buttonOther {
-    width: 100%;
+.buttonNumber {
+    flex: 1;
 }
 
 .buttonOther {
-    width: 100%;
+    flex: 1;
     background-color: rgb(115, 111, 123);
 }
