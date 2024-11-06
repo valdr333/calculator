@@ -11,10 +11,10 @@ const divide = function(a, b) {
     return a/b;
 }
 const operate = function(a, o, b) {
-    if (o == "+") add(a, b);
-    else if (o == "-") subtract(a, b);
-    else if (o == "x") multiply(a, b);
-    else if (o == "÷") divide(a, b);
+    if (o == "+") return add(a, b);
+    else if (o == "-") return subtract(a, b);
+    else if (o == "x") return multiply(a, b);
+    else if (o == "÷") return divide(a, b);
 }
 
 /* DOM tree manipulation and creation */
@@ -44,7 +44,7 @@ for (let i = 0; i < 5; i++) {
         const equal = document.createElement("button");
         equal.textContent = "=";
         nula.classList.add("buttonsRowButton", "buttonNumber");
-        equal.classList.add("buttonsRowButton", "buttonOperator");
+        equal.classList.add("buttonsRowButton", "buttonOperator", "buttonEqual");
         rows[i].appendChild(nula);
         rows[i].appendChild(equal);
     } else {
@@ -77,16 +77,53 @@ for (let i = 0; i < 5; i++) {
 }
 /* DOM tree manipulation and creation */
 
-const displayText = function(btn) {
-    if(display.textContent == "0" && btn.textContent != 0) display.textContent = btn.textContent;
-    else if(display.textContent != "0") display.textContent += btn.textContent;
+const displayNumber = function(btn) {
+    if(operNum == 0) {
+        if(display.textContent == "0" && btn.textContent != 0) display.textContent = btn.textContent;
+        else if(display.textContent != "0") display.textContent += btn.textContent;
+    } else {
+        display.textContent += btn.textContent;
+        num2 += btn.textContent;
+    }
+    display.scrollLeft = display.scrollWidth
 }
 
-const display = document.querySelector(".display");
+const displayOperator = function(btn) {
+    if (operNum == 0 && btn.textContent != "=") {
+        num1 = display.textContent;
+        oper = btn.textContent;
+        display.textContent += btn.textContent;
+        operNum += 1;
+    }
+    display.scrollLeft = display.scrollWidth
+}
+
+const pressEqual = function() {
+    if (num1 != "" && oper != "" && num2 != "") {
+        display.textContent = operate(+num1, oper, +num2);
+        num1 = "";
+        num2 = "";
+        oper = "";
+        operNum = 0;
+    }
+}
+
+let num1 = "";
+let num2 = "";
+let oper = "";
+let operNum = 0;
+
+const display = document.querySelector(".displayText");
 display.textContent = "0";
 
 const buttonNumber = document.querySelectorAll(".buttonNumber");
-buttonNumber.forEach((btn) => btn.addEventListener("click", () => displayText(btn)));
+buttonNumber.forEach((btn) => btn.addEventListener("click", () => displayNumber(btn)));
 
 const buttonAC = document.querySelector(".buttonAC");
 buttonAC.addEventListener("click", () => display.textContent = "0");
+
+const  buttonOperator = document.querySelectorAll(".buttonOperator");
+buttonOperator.forEach((btn) => btn.addEventListener("click", () => displayOperator(btn)));
+
+const buttonEqual = document.querySelector(".buttonEqual");
+buttonEqual.addEventListener("click", () => pressEqual());
