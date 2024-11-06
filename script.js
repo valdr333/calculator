@@ -17,7 +17,8 @@ const operate = function(a, o, b) {
     else if (o == "÷") divide(a, b);
 }
 
-buttons = document.querySelector(".buttons");
+/* DOM tree manipulation and creation */
+const  buttons = document.querySelector(".buttons");
 let rows = [];
 for (let i = 1; i < 6; i++) {
     const div = document.createElement("div");
@@ -33,7 +34,7 @@ for (let i = 0; i < 5; i++) {
         ac.textContent = "AC";
         const division = document.createElement("button");
         division.textContent = "÷";
-        ac.classList.add("buttonsRowButton", "buttonOther");
+        ac.classList.add("buttonsRowButton", "buttonOther", "buttonAC");
         division.classList.add("buttonsRowButton", "buttonOperator");
         rows[i].appendChild(ac);
         rows[i].appendChild(division);
@@ -74,6 +75,18 @@ for (let i = 0; i < 5; i++) {
         }
     }
 }
+/* DOM tree manipulation and creation */
 
-display = document.querySelector(".display");
-display.textContent = "0123456789";
+const displayText = function(btn) {
+    if(display.textContent == "0" && btn.textContent != 0) display.textContent = btn.textContent;
+    else if(display.textContent != "0") display.textContent += btn.textContent;
+}
+
+const display = document.querySelector(".display");
+display.textContent = "0";
+
+const buttonNumber = document.querySelectorAll(".buttonNumber");
+buttonNumber.forEach((btn) => btn.addEventListener("click", () => displayText(btn)));
+
+const buttonAC = document.querySelector(".buttonAC");
+buttonAC.addEventListener("click", () => display.textContent = "0");
