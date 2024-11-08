@@ -100,6 +100,7 @@ const displayOperator = function(btn) {
         operNum = 1;
         dotNum = 0;
     } else if(operNum == 1 && btn.textContent != "=") {
+        if((oper == "x" || oper == "÷") && num2 == "") num2 = "1";
         pressEqual();
         num1 = display.textContent;
         display.textContent += btn.textContent;
@@ -111,7 +112,7 @@ const displayOperator = function(btn) {
 }
 
 const pressEqual = function() {
-    if (num1 != "" && oper != "" && num2 != "") {
+    if (num1 != "" && oper != "") {
         display.textContent = operate(+num1, oper, +num2);
         num1 = "";
         num2 = "";
@@ -147,9 +148,9 @@ const buttonAC = document.querySelector(".buttonAC");
 buttonAC.addEventListener("click", () => {display.textContent = "0";
     operNum = 0;
     dotNum = 0;
-    num1 = 0;
-    num2 = 0;
-    oper = 0;
+    num1 = "";
+    num2 = "";
+    oper = "";
 });
 
 const  buttonOperator = document.querySelectorAll(".buttonOperator");
