@@ -82,12 +82,14 @@ for (let i = 0; i < 5; i++) {
 /* DOM tree manipulation and creation */
 
 const displayNumber = function(btn) {
-    if(operNum == 0) {
-        if(display.textContent == "0" && btn.textContent != 0) display.textContent = btn.textContent;
-        else if(display.textContent != "0") display.textContent += btn.textContent;
-    } else {
-        display.textContent += btn.textContent;
-        num2 += btn.textContent;
+    if(display.textContent != "Infinity" && display.textContent != "NaN"){
+        if(operNum == 0) {
+            if(display.textContent == "0" && btn.textContent != 0) display.textContent = btn.textContent;
+            else if(display.textContent != "0") display.textContent += btn.textContent;
+        } else {
+            display.textContent += btn.textContent;
+            num2 += btn.textContent;
+        }
     }
     display.scrollLeft = display.scrollWidth;
 }
